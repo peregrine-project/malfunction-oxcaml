@@ -1,24 +1,26 @@
 opam-version: "2.0"
-maintainer: "stephen.dolan@cl.cam.ac.uk"
-authors: ["Stephen Dolan"]
-homepage: "https://github.com/stedolan/malfunction"
-bug-reports: "https://github.com/stedolan/malfunction/issues"
-dev-repo: "git+https://github.com/stedolan/malfunction.git"
+version: "0.7.1+ox"
+maintainer: "The Peregrine team"
+authors: ["Stephen Dolan" "The Peregrine team (OxCaml port)"]
+homepage: "https://github.com/peregrine-project/malfunction-oxcaml"
+bug-reports: "https://github.com/peregrine-project/malfunction-oxcaml/issues"
+dev-repo: "git+https://github.com/peregrine-project/malfunction-oxcaml.git"
 license: "LGPL-2.0-or-later"
 build: [
   [ "dune" "build" "-p" name "-j" jobs ]
-  [ "dune" "runtest" "-p" name "-j" jobs ] {with-test}
 ]
+# Malfunction uses the compiler's internal Lambda API, so this port builds
+# against one OxCaml compiler only: ocaml-variants 5.2.0+ox from the OxCaml
+# opam repository at f1bd228dda31430bf6271f0f9adb2e604c6957ca.
 depends: [
-  "ocaml" {>= "4.08" & < "5.0.0"}
+  "ocaml-variants" {= "5.2.0+ox"}
   "ocamlfind"
-  "dune"
-  "cppo" {build}
-  "omd" {with-test & >= "2.0.0~"}
+  "dune" {>= "1.11"}
   "zarith"
 ]
-synopsis: "Compiler back-end for functional languages, based on OCaml"
+synopsis: "Malfunction 0.7.1 ported to the OxCaml compiler"
 description: """
 Malfunction is a high-performance, low-level untyped program
 representation, designed as a target for compilers of functional
-programming languages."""
+programming languages. This is Malfunction 0.7.1 ported to the OxCaml
+compiler (ocaml-variants 5.2.0+ox), which compiles it with flambda2."""
